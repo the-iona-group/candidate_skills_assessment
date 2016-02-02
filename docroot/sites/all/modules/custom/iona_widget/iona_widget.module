@@ -1,0 +1,82 @@
+<?php
+
+/**
+ * @file
+ * Main file for for the iona_widget module.
+ */
+
+/**
+ * Implements hook_entity_info().
+ */
+function iona_widget_entity_info() {
+  $entity = array();
+  $entity['iona_widget'] = array(
+    'label' => t('Iona Widget'),
+    'entity class' => 'Entity',
+    'controller class' => 'EntityAPIController',
+    'base table' => 'iona_widget',
+    'entity keys' => array(
+      'id' => 'wid',
+    ),
+    'module' => 'iona_widget',
+    'metadata controller class' => 'IonaWidgetMetadataController',
+    'views controller class' => 'IonaWidgetViewsController',
+  );
+  return $entity;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function iona_widget_menu() {
+  $items = array();
+  // Add widget form.
+  $items['add-widget'] = array(
+    'title' => 'Add a Widget',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('iona_widget_form', entity_get_controller('iona_widget')->create()),
+    'access callback' => 'user_is_logged_in',
+    'file' => 'iona_widget.pages.inc',
+    'file path' => drupal_get_path('module', 'iona_widget') . '/includes',
+  );
+  // View Widget Page.
+  $items['iona-widget/%iona_widget'] = array(
+    'title' => 'View Widget',
+    'title callback' => 'iona_widget_title_callback',
+    'title arguments' => array(1),
+    'page callback' => 'iona_widget_view',
+    'page arguments' => array(1),
+    'access callback' => 'user_is_logged_in',
+    'file' => 'iona_widget.pages.inc',
+    'file path' => drupal_get_path('module', 'iona_widget') . '/includes',
+  );
+  return $items;
+}
+
+/**
+ * Title callback for the widget page.
+ *
+ * @param object $widget
+ *   The widget object to get the name from.
+ *
+ * @return string
+ *   Returns name of the given widget.
+ */
+function iona_widget_title_callback($widget) {
+  return $widget->name;
+}
+
+/**
+ * Loads up an Iona widget entity.
+ *
+ * @param int $wid
+ *   The unique widget ID used to load the entity.
+ * @param bool $reset
+ *   A boolean indicating that the internal cache should be reset.
+ *
+ * @return object
+ *   Returns an iona_widget entity object.
+ */
+function iona_widget_load($wid, $reset = FALSE) {
+  return reset(entity_load('iona_widget', array($wid), array(), $reset));
+}

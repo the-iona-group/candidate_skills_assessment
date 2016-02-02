@@ -1,0 +1,7 @@
+name = Iona Widget
+description = This module creates a custom Iona widget.
+core = 7.x
+
+files[] = iona_widget.info.inc
+
+dependencies[] = entity

@@ -1,0 +1,36 @@
+<?php
+/**
+ * @file
+ * Iona Widget install file
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function iona_widget_schema() {
+  $schema = array();
+  $schema['iona_widget'] = array(
+    'description' => 'Stores Iona widget data.',
+    'fields'  => array(
+      'wid' => array(
+        'description' => 'Widget ID',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'description' => 'Widget name',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'description' => array(
+        'description' => 'Widget description',
+        'type' => 'text',
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('wid'),
+  );
+  return $schema;
+}
