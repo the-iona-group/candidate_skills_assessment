@@ -29,6 +29,7 @@ The tasks for this exercise are as follows:
 2. Add a new property to the widget schema:
    * Date available. A date a widget will be available to the public.
 3. Modify the add widget form to include the new widget property, ensuring the date available field is required.
-4. Create a page based view that lists all widgets currently in the system. This view should display each property of a widget (name, description, and date available) in separate columns, as well as an additional column that contains a link to view the associated widget. This view should be exported to a new feature, and the resulting feature added to the repository.
-5. Create a new custom menu that includes a link to the widget listing view and the add widget form. This menu should only display on the front page of the site, and be added to the feature created in step 4.
+4. Create a page based view that lists all widgets currently in the system. This view should display each property of a widget (name, description, and date available) in separate columns, as well as an additional column that contains a link to view the associated widget.
+5. Create a new custom menu that includes a link to the widget listing view and the add widget form. This menu should only display on the front page of the site.
 6. Add a custom permission that will control who can add a widget in the system. Update the add widget menu item to restrict access to users who have this permission. Additionally, add a permission to the view created in step 4 so that only logged in users can access it.
+7. Create a feature that codifies the view created in step 4 and the menu created in step 5 - this feature should be exported to the custom module directory.
