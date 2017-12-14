@@ -78,5 +78,6 @@ function iona_widget_title_callback($widget) {
  *   Returns an iona_widget entity object.
  */
 function iona_widget_load($wid, $reset = FALSE) {
-  return reset(entity_load('iona_widget', array($wid), array(), $reset));
+  $entities = entity_load('iona_widget', array($wid), array(), $reset);
+  return reset($entities);
 }
