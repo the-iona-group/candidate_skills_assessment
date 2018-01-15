@@ -21,7 +21,7 @@ class IonaWidgetMetadataController extends EntityDefaultMetadataController {
       'type' => 'integer',
       'label' => t('Widget ID'),
       'description' => t('Unique ID for an Iona widget record.'),
-      'schema field' => 'id',
+      'schema field' => 'wid',
     );
     // Widget Name.
     $properties['name'] = array(
