@@ -26,6 +26,15 @@ function iona_widget_form($form, &$form_state, $widget) {
     '#type' => 'textarea',
   );
 
+  // A date a widget will be available to the public.
+  $form['date_available'] = array(
+    '#title' => t('Date Available'),
+    '#date_format' => 'm-d-Y',
+    '#default_value' => REQUEST_TIME,
+    '#type' => 'date_popup',
+    '#required' => TRUE,
+  );
+
   $form['actions'] = array(
     '#type' => 'container',
     '#attributes' => array('class' => array('form-actions')),
@@ -37,6 +46,7 @@ function iona_widget_form($form, &$form_state, $widget) {
     '#value' => t('Add widget'),
     '#submit' => array('iona_widget_form_submit'),
   );
+  // return $form;
   return $form;
 }
 
@@ -75,6 +85,12 @@ function iona_widget_view($widget) {
     '#type' => 'item',
     '#title' => t('Widget description'),
     '#markup' => $widget->description,
+  );
+  // A date a widget will be available to the public.
+  $content['date_available'] = array(
+    '#type' => 'item',
+    '#title' => t('Date Available'),
+    '#markup' => $widget->date_available,
   );
   return drupal_render($content);
 }

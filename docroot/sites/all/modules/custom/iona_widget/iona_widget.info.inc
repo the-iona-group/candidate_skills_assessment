@@ -37,6 +37,13 @@ class IonaWidgetMetadataController extends EntityDefaultMetadataController {
       'description' => t('The description of the widget.'),
       'schema field' => 'description',
     );
+    // A date a widget will be available to the public.
+    $properties['date_available'] = array(
+      'type' => 'text',
+      'label' => t('Date Available'),
+      'description' => t('A date a widget will be available to the public.'),
+      'schema field' => 'date_available',
+    );
     return $info;
   }
 }

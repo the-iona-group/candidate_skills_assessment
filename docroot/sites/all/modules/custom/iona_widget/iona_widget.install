@@ -29,6 +29,12 @@ function iona_widget_schema() {
         'type' => 'text',
         'not null' => FALSE,
       ),
+      'date_available' => array(
+        'description' => 'Date Available',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+      ),
     ),
     'primary key' => array('wid'),
   );

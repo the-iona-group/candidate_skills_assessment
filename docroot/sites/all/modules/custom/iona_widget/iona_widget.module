@@ -35,9 +35,12 @@ function iona_widget_menu() {
     'title' => 'Add a Widget',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('iona_widget_form', entity_get_controller('iona_widget')->create()),
-    'access callback' => 'user_is_logged_in',
+    'access callback' => 'user_access',
+    'access arguments' => array('add widget'),
     'file' => 'iona_widget.pages.inc',
     'file path' => drupal_get_path('module', 'iona_widget') . '/includes',
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'menu-widgets',
   );
   // View Widget Page.
   $items['iona-widget/%iona_widget'] = array(
@@ -46,12 +49,41 @@ function iona_widget_menu() {
     'title arguments' => array(1),
     'page callback' => 'iona_widget_view',
     'page arguments' => array(1),
-    'access callback' => 'user_is_logged_in',
+    'access callback' => 'user_access',
+    'access arguments' => array('view widget'),
     'file' => 'iona_widget.pages.inc',
     'file path' => drupal_get_path('module', 'iona_widget') . '/includes',
   );
   return $items;
 }
+
+/**
+ * Implements hook_permission().
+ */
+ function iona_widget_permission(){
+     return array(
+         'add widget' => array(
+            'title' => t('Add Widget'),
+         ),
+         'view widget' => array(
+            'title' => t('View Widget Page'),
+         ),
+         'view widget list' => array(
+            'title' => t('View Widget List'),
+         ),
+     );
+ }
+
+ /**
+ * Implements hook_views_api()
+ */
+ function iona_widget_views_api(){
+     return array(
+         'api' => 3,
+         'path' => drupal_get_path('module', 'iona_widget') . '/includes',
+     );
+ }
+
 
 /**
  * Title callback for the widget page.
